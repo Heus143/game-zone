@@ -12,7 +12,7 @@ import Categories from "./pages/Categories";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Cart from "./pages/Cart";
+import Cart from "./pages/cart";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import TrackOrder from "./pages/TrackOrder";
