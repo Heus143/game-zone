@@ -1,0 +1,269 @@
+.register-page {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  background: #080b16;
+}
+
+.register-left {
+  width: 40%;
+  padding: 60px;
+  background: linear-gradient(145deg, #080b16, #17133b);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-brand {
+  color: #22d3ee;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 7px;
+  margin-bottom: 20px;
+}
+
+.register-left h1 {
+  font-size: 45px;
+  margin-bottom: 15px;
+}
+
+.register-intro {
+  color: #a5b4c7;
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+.register-features {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.register-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.register-feature span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #22d3ee;
+  color: #080b16;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.register-feature p {
+  margin: 0;
+  color: #dbeafe;
+  font-size: 14px;
+}
+
+.delivery-box {
+  margin-top: 35px;
+  padding: 20px;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  background: #111629;
+}
+
+.delivery-box strong {
+  color: #a855f7;
+}
+
+.delivery-box p {
+  color: #94a3b8;
+  font-size: 13px;
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+
+.register-right {
+  width: 60%;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d1120;
+}
+
+.register-box {
+  width: 100%;
+  max-width: 700px;
+  background: #151a2e;
+  padding: 40px;
+  border: 1px solid #27304d;
+  border-radius: 12px;
+}
+
+.register-box h2 {
+  color: white;
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.register-subtitle {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.form-row {
+  display: flex;
+  gap: 18px;
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 13px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #303957;
+  border-radius: 7px;
+  outline: none;
+  font-size: 14px;
+  background: #0d1120;
+  color: white;
+}
+
+.form-group input,
+.form-group select {
+  height: 43px;
+}
+
+.form-group textarea {
+  height: 75px;
+  resize: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #64748b;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #22d3ee;
+}
+
+.form-group small {
+  display: block;
+  color: #fb7185;
+  min-height: 16px;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.register-password {
+  position: relative;
+}
+
+.register-password input {
+  padding-right: 42px;
+}
+
+.register-password span {
+  position: absolute;
+  right: 12px;
+  top: 11px;
+  cursor: pointer;
+}
+
+.register-box button {
+  width: 100%;
+  height: 45px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 7px;
+  background: #22d3ee;
+  color: #07111f;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.register-box button:hover {
+  background: #a855f7;
+  color: white;
+}
+
+.login-link {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #22d3ee;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  color: #a855f7;
+}
+
+@media (max-width: 900px) {
+  .register-left {
+    width: 45%;
+    padding: 35px;
+  }
+
+  .register-right {
+    width: 55%;
+    padding: 25px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-page {
+    flex-direction: column;
+  }
+
+  .register-left,
+  .register-right {
+    width: 100%;
+  }
+
+  .register-left {
+    padding: 45px 25px;
+  }
+
+  .register-right {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-box {
+    padding: 25px 20px;
+  }
+
+  .register-left h1 {
+    font-size: 35px;
+  }
+}
