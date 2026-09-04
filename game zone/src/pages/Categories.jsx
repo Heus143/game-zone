@@ -15,9 +15,7 @@ function Categories() {
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          "http://localhost:3000/products"
-        );
+        const response = await fetch("/db.json");
 
         if (!response.ok) {
           throw new Error("Failed to fetch products");
@@ -25,7 +23,7 @@ function Categories() {
 
         const data = await response.json();
 
-        setProducts(data);
+        setProducts(data.products);
       } catch (error) {
         console.error(error);
         setError("Unable to load categories");

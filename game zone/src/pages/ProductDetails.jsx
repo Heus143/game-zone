@@ -35,9 +35,7 @@ function ProductDetails() {
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          `http://localhost:3000/products/${id}`
-        );
+        const response = await fetch("/db.json");
 
         if (!response.ok) {
           throw new Error(
@@ -47,7 +45,18 @@ function ProductDetails() {
 
         const data = await response.json();
 
-        setProduct(data);
+        const foundProduct = data.products.find(
+          (item) =>
+            String(item.id) === String(id)
+        );
+
+        if (!foundProduct) {
+          throw new Error(
+            "Product not found"
+          );
+        }
+
+        setProduct(foundProduct);
       } catch (error) {
         console.error(error);
 

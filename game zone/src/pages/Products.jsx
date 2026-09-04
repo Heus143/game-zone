@@ -30,7 +30,6 @@ function Products() {
 
   const navigate = useNavigate();
   const location = useLocation();
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,17 +38,15 @@ function Products() {
         setLoading(true);
         setError("");
 
-        const response = await fetch("/api/products");
+        const response = await fetch("/db.json");
 
         if (!response.ok) {
-          throw new Error(
-            "Failed to fetch products"
-          );
+          throw new Error("Failed to fetch products");
         }
 
         const data = await response.json();
 
-        setProducts(data);
+        setProducts(data.products);
       } catch (error) {
         console.error(error);
 
@@ -210,7 +207,6 @@ function Products() {
   const handleAddToCart = useCallback(
     (product) => {
       dispatch(addToCart(product));
-
       alert("Product added to cart");
     },
     [dispatch]
@@ -220,26 +216,19 @@ function Products() {
     <div className="products-page">
 
       <div className="products-header">
+        <p>GAMEZONE</p>
 
-        <p>
-          GAMEZONE
-        </p>
-
-        <h1>
-          Gaming Products
-        </h1>
+        <h1>Gaming Products</h1>
 
         <span>
           Explore gaming gear for your
           ultimate setup.
         </span>
-
       </div>
 
       <div className="filters-container">
 
         <div className="filter-search">
-
           <input
             type="text"
             placeholder="Search products..."
@@ -248,16 +237,13 @@ function Products() {
               setSearch(e.target.value)
             }
           />
-
         </div>
 
         <div className="filter-group">
-
           <select
             value={category}
             onChange={(e) => {
-              const value =
-                e.target.value;
+              const value = e.target.value;
 
               setCategory(value);
 
@@ -272,28 +258,22 @@ function Products() {
               }
             }}
           >
-
             <option value="">
               All Categories
             </option>
 
-            {categories.map(
-              (item) => (
-                <option
-                  key={item}
-                  value={item}
-                >
-                  {item}
-                </option>
-              )
-            )}
-
+            {categories.map((item) => (
+              <option
+                key={item}
+                value={item}
+              >
+                {item}
+              </option>
+            ))}
           </select>
-
         </div>
 
         <div className="filter-group">
-
           <input
             type="number"
             placeholder="Min Price"
@@ -302,11 +282,9 @@ function Products() {
               setMinPrice(e.target.value)
             }
           />
-
         </div>
 
         <div className="filter-group">
-
           <input
             type="number"
             placeholder="Max Price"
@@ -315,18 +293,15 @@ function Products() {
               setMaxPrice(e.target.value)
             }
           />
-
         </div>
 
         <div className="filter-group">
-
           <select
             value={rating}
             onChange={(e) =>
               setRating(e.target.value)
             }
           >
-
             <option value="">
               All Ratings
             </option>
@@ -342,48 +317,38 @@ function Products() {
             <option value="4.7">
               ⭐ 4.7+
             </option>
-
           </select>
-
         </div>
 
         <div className="filter-group">
-
           <select
             value={color}
             onChange={(e) =>
               setColor(e.target.value)
             }
           >
-
             <option value="">
               All Colors
             </option>
 
-            {colors.map(
-              (item) => (
-                <option
-                  key={item}
-                  value={item}
-                >
-                  {item}
-                </option>
-              )
-            )}
-
+            {colors.map((item) => (
+              <option
+                key={item}
+                value={item}
+              >
+                {item}
+              </option>
+            ))}
           </select>
-
         </div>
 
         <div className="filter-group">
-
           <select
             value={sort}
             onChange={(e) =>
               setSort(e.target.value)
             }
           >
-
             <option value="">
               Sort By
             </option>
@@ -403,9 +368,7 @@ function Products() {
             <option value="name">
               Name: A-Z
             </option>
-
           </select>
-
         </div>
 
         <button
@@ -419,31 +382,24 @@ function Products() {
       </div>
 
       <div className="products-count">
-
         <span>
           {filteredProducts.length} Products Found
         </span>
-
       </div>
 
       {loading && (
         <div className="products-loading">
-
           <div className="loading-spinner"></div>
 
           <p>
             Loading products...
           </p>
-
         </div>
       )}
 
       {error && !loading && (
         <div className="products-error">
-
-          <p>
-            {error}
-          </p>
+          <p>{error}</p>
 
           <button
             type="button"
@@ -453,19 +409,16 @@ function Products() {
           >
             Try Again
           </button>
-
         </div>
       )}
 
       {!loading &&
         !error &&
         filteredProducts.length > 0 && (
-
           <div className="products-grid">
 
             {filteredProducts.map(
               (product) => (
-
                 <div
                   className="product-card"
                   key={product.id}
@@ -475,14 +428,12 @@ function Products() {
                 >
 
                   <div className="product-image">
-
                     <img
                       src={product.image}
                       alt={product.name}
                       loading="lazy"
                       decoding="async"
                     />
-
                   </div>
 
                   <div className="product-info">
@@ -532,7 +483,6 @@ function Products() {
                   </div>
 
                 </div>
-
               )
             )}
 
@@ -542,7 +492,6 @@ function Products() {
       {!loading &&
         !error &&
         filteredProducts.length === 0 && (
-
           <div className="no-products">
 
             <div className="no-products-icon">
