@@ -39,9 +39,7 @@ function Products() {
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          "http://localhost:3000/products"
-        );
+        const response = await fetch("/api/products");
 
         if (!response.ok) {
           throw new Error(
