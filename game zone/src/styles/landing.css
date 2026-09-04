@@ -1,0 +1,253 @@
+.landing {
+  min-height: 100vh;
+  background: #070914;
+  color: white;
+}
+
+.landing-hero {
+  min-height: calc(100vh - 76px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 7, 20, 0.98) 0%,
+      rgba(5, 7, 20, 0.90) 38%,
+      rgba(5, 7, 20, 0.48) 65%,
+      rgba(5, 7, 20, 0.20) 100%
+    ),
+    url("/gaming-hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.landing-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 75% 50%,
+      rgba(168, 85, 247, 0.18),
+      transparent 35%
+    );
+  pointer-events: none;
+}
+
+.landing-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+
+.welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid #facc15;
+  border-radius: 30px;
+  color: #facc15;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: rgba(250, 204, 21, 0.04);
+  margin-bottom: 28px;
+}
+
+.landing h1 {
+  margin: 0;
+  max-width: 850px;
+  font-size: clamp(55px, 7vw, 96px);
+  line-height: 0.98;
+  font-weight: 800;
+  letter-spacing: -3px;
+  color: #ffffff;
+}
+
+.landing h1 span {
+  color: #facc15;
+  text-shadow: 5px 5px 0 #ef6a63;
+}
+
+.landing-description {
+  max-width: 700px;
+  margin-top: 32px;
+  color: #cbd5e1;
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.landing-buttons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 35px;
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.primary-button {
+  background: #facc15;
+  color: #080b16;
+  box-shadow: 6px 6px 0 #ef6a63;
+}
+
+.primary-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0 #ef6a63;
+}
+
+.primary-button span {
+  font-size: 22px;
+}
+
+.secondary-button {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid #475569;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.secondary-button:hover {
+  border-color: #22d3ee;
+  color: #22d3ee;
+  transform: translateY(-4px);
+}
+
+.secondary-button span {
+  font-size: 20px;
+}
+
+.gaming-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 35px;
+}
+
+.gaming-tags a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 17px;
+  border: 1px solid #334155;
+  border-radius: 30px;
+  background: rgba(15, 23, 42, 0.65);
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  transition: 0.3s ease;
+}
+
+.gaming-tags a:hover {
+  border-color: #facc15;
+  color: #facc15;
+  transform: translateY(-3px);
+}
+
+.gaming-tags span {
+  color: #facc15;
+}
+
+@media (max-width: 1000px) {
+  .landing-content {
+    padding: 70px 40px;
+  }
+
+  .landing h1 {
+    font-size: 65px;
+  }
+
+  .landing-description {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 700px) {
+  .landing-hero {
+    min-height: calc(100vh - 120px);
+    background-position: 65% center;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(5, 7, 20, 0.96),
+        rgba(5, 7, 20, 0.78)
+      ),
+      url("/gaming-hero.jpg");
+    background-size: cover;
+  }
+
+  .landing-content {
+    padding: 55px 25px;
+  }
+
+  .welcome-badge {
+    font-size: 11px;
+    padding: 8px 14px;
+  }
+
+  .landing h1 {
+    font-size: 48px;
+    letter-spacing: -2px;
+  }
+
+  .landing-description {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .landing-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primary-button,
+  .secondary-button {
+    justify-content: center;
+  }
+
+  .gaming-tags {
+    gap: 8px;
+  }
+
+  .gaming-tags a {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 450px) {
+  .landing-content {
+    padding: 40px 18px;
+  }
+
+  .landing h1 {
+    font-size: 40px;
+  }
+
+  .landing-description {
+    font-size: 15px;
+  }
+
+  .gaming-tags a {
+    font-size: 11px;
+  }
+}
