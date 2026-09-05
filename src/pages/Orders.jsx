@@ -5,9 +5,35 @@ import { useSelector } from "react-redux";
 import "../styles/orders.css";
 
 function Orders() {
-  const orders = useSelector(
+  const allOrders = useSelector(
     (state) => state.orders.orders
   );
+
+  const user = useSelector(
+    (state) => state.auth.user
+  );
+
+  const orders = useMemo(() => {
+    if (!user) {
+      return [];
+    }
+
+    return allOrders.filter(
+      (order) => {
+        if (order.userId) {
+          return (
+            String(order.userId) ===
+            String(user.id)
+          );
+        }
+
+        return (
+          order.userEmail?.toLowerCase() ===
+          user.email?.toLowerCase()
+        );
+      }
+    );
+  }, [allOrders, user]);
 
   const sortedOrders = useMemo(() => {
     return [...orders].reverse();
@@ -150,15 +176,9 @@ function Orders() {
                     <strong>
                       ₹
                       {(
-                        Number(
-                          item.price || 0
-                        ) *
-                        Number(
-                          item.quantity || 1
-                        )
-                      ).toLocaleString(
-                        "en-IN"
-                      )}
+                        Number(item.price || 0) *
+                        Number(item.quantity || 1)
+                      ).toLocaleString("en-IN")}
                     </strong>
 
                   </div>
@@ -203,9 +223,7 @@ function Orders() {
                   ₹
                   {Number(
                     order.total || 0
-                  ).toLocaleString(
-                    "en-IN"
-                  )}
+                  ).toLocaleString("en-IN")}
                 </strong>
 
               </div>

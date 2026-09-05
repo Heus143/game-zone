@@ -5,13 +5,6 @@ const savedOrders =
     localStorage.getItem("orders")
   ) || [];
 
-/*
-  Give old orders a placedAt time
-  if they don't already have one.
-
-  This allows old orders to participate
-  in automatic tracking.
-*/
 const ordersWithTimestamp =
   savedOrders.map((order) => ({
     ...order,
@@ -119,10 +112,8 @@ const ordersSlice = createSlice({
         order.status = status;
 
         if (order.tracking) {
-
           order.tracking.currentStep =
             currentStep;
-
         }
       }
 

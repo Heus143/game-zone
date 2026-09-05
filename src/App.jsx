@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
@@ -24,11 +25,7 @@ import Users from "./pages/admin/Users";
 function App() {
   return (
     <Routes>
-
-      <Route
-        path="/"
-        element={<Landing />}
-      />
+      <Route path="/" element={<Landing />} />
 
       <Route
         path="/*"
@@ -37,7 +34,6 @@ function App() {
             <Navbar />
 
             <main>
-
               <Routes>
 
                 <Route
@@ -72,17 +68,29 @@ function App() {
 
                 <Route
                   path="/checkout"
-                  element={<Checkout />}
+                  element={
+                    <ProtectedRoute>
+                      <Checkout />
+                    </ProtectedRoute>
+                  }
                 />
 
                 <Route
                   path="/orders"
-                  element={<Orders />}
+                  element={
+                    <ProtectedRoute>
+                      <Orders />
+                    </ProtectedRoute>
+                  }
                 />
 
                 <Route
                   path="/track-order/:id"
-                  element={<TrackOrder />}
+                  element={
+                    <ProtectedRoute>
+                      <TrackOrder />
+                    </ProtectedRoute>
+                  }
                 />
 
                 <Route
@@ -116,14 +124,12 @@ function App() {
                 />
 
               </Routes>
-
             </main>
 
             <Footer />
           </>
         }
       />
-
     </Routes>
   );
 }

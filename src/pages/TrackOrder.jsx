@@ -5,16 +5,45 @@ import {
 } from "react";
 
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import {
+  Link,
+  useParams
+} from "react-router-dom";
 
 import "../styles/track-order.css";
 
-function TrackOrder()  {
+function TrackOrder() {
   const { id } = useParams();
 
-  const orders = useSelector(
+  const allOrders = useSelector(
     (state) => state.orders.orders
   );
+
+  const user = useSelector(
+    (state) => state.auth.user
+  );
+
+  const orders = useMemo(() => {
+    if (!user) {
+      return [];
+    }
+
+    return allOrders.filter(
+      (order) => {
+        if (order.userId) {
+          return (
+            String(order.userId) ===
+            String(user.id)
+          );
+        }
+
+        return (
+          order.userEmail?.toLowerCase() ===
+          user.email?.toLowerCase()
+        );
+      }
+    );
+  }, [allOrders, user]);
 
   const order = useMemo(() => {
     return orders.find(
@@ -23,13 +52,6 @@ function TrackOrder()  {
     );
   }, [orders, id]);
 
-  /*
-    Automatic tracking refresh.
-
-    Every 1 second the component re-renders
-    so the current tracking step changes
-    automatically according to elapsed time.
-  */
   const [, setCurrentTime] = useState(
     Date.now()
   );
@@ -105,17 +127,6 @@ function TrackOrder()  {
           "Your order has been delivered."
       }
     ];
-
-  /*
-    Each step takes 10 seconds.
-
-    Step 0 = 0 - 9 seconds
-    Step 1 = 10 - 19 seconds
-    Step 2 = 20 - 29 seconds
-    Step 3 = 30 - 39 seconds
-    Step 4 = 40 - 49 seconds
-    Step 5 = 50+ seconds
-  */
 
   const STEP_DURATION = 10 * 1000;
 
@@ -206,9 +217,7 @@ function TrackOrder()  {
               ₹
               {Number(
                 order.total || 0
-              ).toLocaleString(
-                "en-IN"
-              )}
+              ).toLocaleString("en-IN")}
             </strong>
 
           </div>
@@ -249,9 +258,11 @@ function TrackOrder()  {
                     <div className="tracking-line">
 
                       <div className="tracking-dot">
+
                         {isCompleted
                           ? "✓"
                           : index + 1}
+
                       </div>
 
                     </div>

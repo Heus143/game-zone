@@ -1,4 +1,9 @@
-import { useMemo, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useState
+} from "react";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,6 +20,10 @@ function Checkout() {
     (state) => state.cart.cart
   );
 
+  const user = useSelector(
+    (state) => state.auth.user
+  );
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -25,6 +34,17 @@ function Checkout() {
   });
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (user) {
+      setForm((previousForm) => ({
+        ...previousForm,
+        name: user.name || "",
+        phone: user.phone || "",
+        address: user.address || ""
+      }));
+    }
+  }, [user]);
 
   const subtotal = useMemo(() => {
     return cart.reduce(
@@ -62,8 +82,11 @@ function Checkout() {
     }
 
     if (!form.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    } else if (!/^[6-9]\d{9}$/.test(form.phone)) {
+      newErrors.phone =
+        "Phone number is required";
+    } else if (
+      !/^[6-9]\d{9}$/.test(form.phone)
+    ) {
       newErrors.phone =
         "Enter a valid 10-digit phone number";
     }
@@ -84,7 +107,9 @@ function Checkout() {
     if (!form.pincode.trim()) {
       newErrors.pincode =
         "Pincode is required";
-    } else if (!/^\d{6}$/.test(form.pincode)) {
+    } else if (
+      !/^\d{6}$/.test(form.pincode)
+    ) {
       newErrors.pincode =
         "Enter a valid 6-digit pincode";
     }
@@ -103,6 +128,17 @@ function Checkout() {
       return;
     }
 
+    if (!user) {
+      navigate("/login", {
+        state: {
+          from: {
+            pathname: "/checkout"
+          }
+        }
+      });
+      return;
+    }
+
     if (!validateForm()) {
       return;
     }
@@ -112,12 +148,18 @@ function Checkout() {
     const newOrder = {
       id: orderId,
 
-      // Used for automatic delivery tracking
+      userId: user.id,
+
+      userEmail: user.email,
+
       placedAt: Date.now(),
 
       items: cart,
 
-      customer: form,
+      customer: {
+        ...form,
+        email: user.email
+      },
 
       subtotal,
 
@@ -396,7 +438,9 @@ function Checkout() {
 
                 <span>
                   ₹
-                  {subtotal.toLocaleString("en-IN")}
+                  {subtotal.toLocaleString(
+                    "en-IN"
+                  )}
                 </span>
 
               </div>
@@ -409,7 +453,9 @@ function Checkout() {
 
                 <span>
                   ₹
-                  {delivery.toLocaleString("en-IN")}
+                  {delivery.toLocaleString(
+                    "en-IN"
+                  )}
                 </span>
 
               </div>
@@ -422,7 +468,9 @@ function Checkout() {
 
                 <strong>
                   ₹
-                  {total.toLocaleString("en-IN")}
+                  {total.toLocaleString(
+                    "en-IN"
+                  )}
                 </strong>
 
               </div>
