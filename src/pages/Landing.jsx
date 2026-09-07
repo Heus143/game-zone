@@ -8,6 +8,13 @@ function Landing() {
       <Navbar />
 
       <section className="landing-hero">
+        <div className="landing-image">
+          <img
+            src="/gaming-hero.png"
+            alt="Gaming Setup"
+          />
+        </div>
+
         <div className="landing-overlay"></div>
 
         <div className="landing-content">

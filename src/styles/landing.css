@@ -10,38 +10,52 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(5, 7, 20, 0.98) 0%,
-      rgba(5, 7, 20, 0.90) 38%,
-      rgba(5, 7, 20, 0.48) 65%,
-      rgba(5, 7, 20, 0.20) 100%
-    ),
-    url("/gaming-hero.jpg");
-  background-size: cover;
-  background-position: center;
+  background: #070914;
+}
+
+.landing-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.landing-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 .landing-overlay {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at 75% 50%,
-      rgba(168, 85, 247, 0.18),
-      transparent 35%
-    );
+  z-index: 1;
   pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      #070914 0%,
+      #070914 25%,
+      rgba(7, 9, 20, 0.99) 34%,
+      rgba(7, 9, 20, 0.90) 44%,
+      rgba(7, 9, 20, 0.60) 56%,
+      rgba(7, 9, 20, 0.22) 76%,
+      rgba(7, 9, 20, 0.05) 100%
+    );
 }
 
 .landing-content {
   position: relative;
   z-index: 2;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 80px 60px;
+  width: 52%;
+  max-width: 850px;
+  margin: 0;
+  padding: 80px 0 80px 60px;
 }
 
 .welcome-badge {
@@ -55,27 +69,29 @@
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 1px;
-  background: rgba(250, 204, 21, 0.04);
+  background: rgba(250, 204, 21, 0.05);
   margin-bottom: 28px;
 }
 
 .landing h1 {
   margin: 0;
-  max-width: 850px;
-  font-size: clamp(55px, 7vw, 96px);
-  line-height: 0.98;
+  max-width: 820px;
+  font-size: clamp(52px, 6vw, 86px);
+  line-height: 1;
   font-weight: 800;
   letter-spacing: -3px;
   color: #ffffff;
 }
 
 .landing h1 span {
+  display: block;
   color: #facc15;
   text-shadow: 5px 5px 0 #ef6a63;
+  white-space: nowrap;
 }
 
 .landing-description {
-  max-width: 700px;
+  max-width: 650px;
   margin-top: 32px;
   color: #cbd5e1;
   font-size: 19px;
@@ -118,7 +134,7 @@
 }
 
 .secondary-button {
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(15, 23, 42, 0.75);
   border: 1px solid #475569;
   color: white;
   backdrop-filter: blur(10px);
@@ -148,7 +164,7 @@
   padding: 10px 17px;
   border: 1px solid #334155;
   border-radius: 30px;
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(15, 23, 42, 0.72);
   color: #e2e8f0;
   text-decoration: none;
   font-size: 14px;
@@ -167,9 +183,14 @@
   color: #facc15;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
+  .landing-image {
+    width: 60%;
+  }
+
   .landing-content {
-    padding: 70px 40px;
+    width: 58%;
+    padding: 70px 0 70px 45px;
   }
 
   .landing h1 {
@@ -179,23 +200,70 @@
   .landing-description {
     font-size: 17px;
   }
+
+  .landing-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        #070914 0%,
+        #070914 25%,
+        rgba(7, 9, 20, 0.98) 37%,
+        rgba(7, 9, 20, 0.78) 52%,
+        rgba(7, 9, 20, 0.25) 75%,
+        rgba(7, 9, 20, 0.05) 100%
+      );
+  }
+}
+
+@media (max-width: 900px) {
+  .landing-image {
+    width: 70%;
+  }
+
+  .landing-content {
+    width: 65%;
+    padding: 60px 0 60px 35px;
+  }
+
+  .landing h1 {
+    font-size: 58px;
+  }
+
+  .landing h1 span {
+    white-space: normal;
+  }
 }
 
 @media (max-width: 700px) {
   .landing-hero {
     min-height: calc(100vh - 120px);
-    background-position: 65% center;
+  }
+
+  .landing-image {
+    width: 100%;
+    opacity: 0.35;
+  }
+
+  .landing-image img {
+    object-position: 65% center;
+  }
+
+  .landing-overlay {
     background:
       linear-gradient(
         90deg,
-        rgba(5, 7, 20, 0.96),
-        rgba(5, 7, 20, 0.78)
+        rgba(7, 9, 20, 0.98),
+        rgba(7, 9, 20, 0.82)
       ),
-      url("/gaming-hero.jpg");
-    background-size: cover;
+      linear-gradient(
+        0deg,
+        rgba(7, 9, 20, 0.95),
+        transparent
+      );
   }
 
   .landing-content {
+    width: 100%;
     padding: 55px 25px;
   }
 
@@ -207,6 +275,10 @@
   .landing h1 {
     font-size: 48px;
     letter-spacing: -2px;
+  }
+
+  .landing h1 span {
+    white-space: normal;
   }
 
   .landing-description {
